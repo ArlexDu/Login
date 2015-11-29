@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <!--360浏览器渲染引擎设置-->
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/mylogin.css">
+   <script src="assets/js/minelogin.js"></script>
+  <title>新用户注册</title>
+</head>
+ <body>
+   <div class="am-text-xxl am-kai am-u-sm-3 am-u-sm-centered am-text-secondary am-text-center minetitle">
+                新的用户
+   </div>
+   <!--设置用户名-->
+   <div class="am-input-group am-u-sm-6 am-u-sm-centered am-input-group-primary am-margin-top" >
+            <span class="am-input-group-label">
+			      <i class="am-icon-user am-icon-fw"></i>
+		    </span>
+            <input type="text" class="am-form-field" placeholder="Username" id="u_username" onfocus="emptytext('u_username')" onblur="gettext('u_username')"/>
+   </div>
+   <!--设置密码-->
+   <div class="am-input-group am-u-sm-6 am-u-sm-centered am-input-group-warning am-margin-top"> 
+            <span class="am-input-group-label">
+			      <i class="am-icon-lock am-icon-fw"></i>
+			</span>
+            <input type="password" class="am-form-field" placeholder="Password" id="u_password" onfocus="emptytext('u_password')" onblur="gettext('u_password')"/>
+   </div>
+   <!--重复密码-->
+   <div id="repassword" class="am-input-group am-u-sm-6 am-u-sm-centered am-input-group-success am-margin-top"> 
+            <span class="am-input-group-label">
+			      <i class="am-icon-lock am-icon-fw"></i>
+			</span>
+            <input type="password" class="am-form-field" placeholder="Repassword" id="u_repassword" onfocus="emptytext('u_repassword')" onblur="gettext('u_repassword')"/>
+   </div>
+   <!--设置email-->
+   <div class="am-input-group am-u-sm-6 am-u-sm-centered am-input-group-secondary am-margin-top">
+            <span class="am-input-group-label">
+			      <i class="am-icon-envelope am-icon-fw"></i>
+			</span>
+            <input type="text" class="am-form-field" placeholder="E-Mail" id="u_email" onfocus="emptytext('u_email')" onblur="gettext('u_email')">
+   </div>
+	<!--性别选择单选框-->
+	<div class ="container">
+	   <div class="switch">
+           <input class="switch-input" name="view" value="man" id="man" checked="" type="radio">
+           <label for="man" class="switch-label switch-label-off">man</label>
+           <input class="switch-input" name="view" value="woman" id="woman" type="radio">
+           <label for="woman" class="switch-label switch-label-on">woman</label>
+           <span class="switch-selection"></span>
+       </div>
+	</div>
+	<!--省市的二级联动-->
+	<div class="CityCenter ">
+	     <span class="am-kai am-text-center">省份：</span>
+	     <select class="dropdown " id="selectp" onchange="selectcity('selectp','selectc')">
+	        <option value="none">选择省份</option>
+	     </select>
+		  <span class="am-kai am-text-center">城市：</span>
+		  <select class="dropdown " id="selectc">
+	        <option value="none">选择城市</option>
+	     </select>
+	</div>
+	<!--年月日的联动-->
+	<div class="DateCenter">
+	          <select id="Year" class="dropdown"></select>
+	          <span class="am-kai">年：</span>
+		      
+	          <select id="Month" onchange="selectday('Year','Month','Day')" class="dropdown"></select>
+		      <span class="am-kai">月</span>
+		       
+		      <select id="Day" class="dropdown"></select>
+		      <span class="am-kai">日</span>
+	</div>
+	<div class="LikeCenter">
+	<input type="checkbox" value="" onchange="changeall()" id="all"/>
+	<span>全选</span>
+	<input type="checkbox" value="" id="basketball"/>
+	<span>篮球</span>
+	<input type="checkbox" value="" id="football"/>
+	<span>足球</span>
+	<input type="checkbox" value="" id="swimming"/>
+	<span>游泳</span>
+	<input type="checkbox" value="" id="singing"/>
+	<span>唱歌</span>
+    </div>	
+	
+	<button type="button" class="am-btn am-btn-warning am-radius am-center" onclick="minesubmit()" id="add">添加</button>
+	<div id="result" class="result">
+	      <div class="am-g doc-am-g am-u-sm-6 am-u-sm-centered am-margin-top" id="uname">
+	        <div class="am-u-sm-4 am-text-center">用户名</div>
+	        <div class="am-u-sm-4 am-text-center" id="t_uname">xxx</div>
+	        <div class="am-u-sm-4 am-text-center">
+	               <button type="button" class="am-btn am-btn-danger am-radius am-center" onclick="deleteinfo('uname')">删除</button>
+	        </div>
+	      </div>
+	      <div class="am-g doc-am-g am-u-sm-6 am-u-sm-centered am-margin-top" id="uemail">
+	        <div class="am-u-sm-4 am-text-center">邮箱</div>
+	        <div class="am-u-sm-4 am-text-center" id="t_uemail">xxxxxx</div>
+	        <div class="am-u-sm-4 am-text-center">
+	              <button type="button" class="am-btn am-btn-danger am-radius am-center" onclick="deleteinfo('uemail')">删除</button>
+	        </div>
+	      </div>
+	      <div class="am-g doc-am-g am-u-sm-6 am-u-sm-centered am-margin-top" id="usex">
+	        <div class="am-u-sm-4 am-text-center">性别</div>
+	        <div class="am-u-sm-4 am-text-center" id="t_usex">x</div>
+	        <div class="am-u-sm-4 am-text-center">
+	             <button type="button" class="am-btn am-btn-danger am-radius am-center" onclick="deleteinfo('usex')">删除</button>
+	        </div>
+	      </div>
+	      <div class="am-g doc-am-g am-u-sm-6 am-u-sm-centered am-margin-top" id="uarea">
+	        <div class="am-u-sm-4 am-text-center">地域</div>
+	        <div class="am-u-sm-4 am-text-center" id="t_uarea">xxxxxx</div>
+	        <div class="am-u-sm-4 am-text-center">
+	            <button type="button" class="am-btn am-btn-danger am-radius am-center" onclick="deleteinfo('uarea')">删除</button>
+	        </div>
+	      </div>
+    </div>
+	<!--初始化城市联动菜单-->
+	<script language="javascript">firstArea("selectp",0);</script>
+	<!--初始化日期菜单-->
+	<script language="javascript">firstDate("Year","Month","Day");</script>
+ </body>
+
+</html>
